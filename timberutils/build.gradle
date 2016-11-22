@@ -1,3 +1,8 @@
+def libraryGroupId          = 'gr.michalisvitos'
+def libraryArtifactId       = 'timberutils'
+def libraryVersion          = '1.0.0'
+def libraryVersionCode      = 1
+
 apply plugin: 'com.android.library'
 
 repositories {
@@ -11,13 +16,22 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
+        versionCode libraryVersionCode
+        versionName libraryVersion
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    libraryVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.aar')) {
+                def fileName = "${libraryGroupId}-${libraryArtifactId}-${libraryVersion}.aar"
+                output.outputFile = new File(outputFile.parent, fileName)
+            }
         }
     }
 }
@@ -38,3 +52,4 @@ dependencies {
         transitive = true
     }
 }
+
