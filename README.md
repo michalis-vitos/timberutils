@@ -12,7 +12,7 @@ Usage
 -----
 Plant the trees to Timber as you would normally do:
 
-    Timber.plant(new DebugLog());
+    Timber.plant(new DebugTree());
 
 or
 
