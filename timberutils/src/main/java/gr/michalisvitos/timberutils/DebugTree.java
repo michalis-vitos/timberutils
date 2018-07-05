@@ -22,7 +22,7 @@ public class DebugTree extends Timber.DebugTree
     final String threadName = Thread.currentThread().getName();
     final int lineNumber = element.getLineNumber();
     String methodName = element.getMethodName();
-    if (methodName.contains("\\$"))
+    if (methodName.contains("$"))
       methodName = methodName.split("\\$")[0];
 
     return String.format("%s[%s].%s()#%s",
