@@ -1,7 +1,7 @@
 def libraryGroupId          = 'gr.michalisvitos'
 def libraryArtifactId       = 'timberutils'
-def libraryVersion          = '1.0.1'
-def libraryVersionCode      = 2
+def libraryVersion          = '1.0.2'
+def libraryVersionCode      = 3
 
 apply plugin: 'com.android.library'
 
