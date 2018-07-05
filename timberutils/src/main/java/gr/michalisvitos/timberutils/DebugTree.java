@@ -15,15 +15,21 @@ public class DebugTree extends Timber.DebugTree
 		super();
 	}
 
-	@Override
-	protected String createStackElementTag(StackTraceElement element)
-	{
-		return String.format("%s[%s].%s()#%s",
-		  super.createStackElementTag(element),
-		  Thread.currentThread().getName(),
-		  element.getMethodName(),
-		  element.getLineNumber()
-		);
-	}
+  @Override
+  protected String createStackElementTag(StackTraceElement element)
+  {
+    final String stackElementTag = super.createStackElementTag(element);
+    final String threadName = Thread.currentThread().getName();
+    final int lineNumber = element.getLineNumber();
+    String methodName = element.getMethodName();
+    if (methodName.contains("\\$"))
+      methodName = methodName.split("\\$")[0];
 
+    return String.format("%s[%s].%s()#%s",
+        stackElementTag,
+        threadName,
+        methodName,
+        lineNumber
+    );
+  }
 }
